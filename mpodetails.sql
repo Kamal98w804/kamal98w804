@@ -102,8 +102,10 @@ select count(*) from memis_live.mpo_employee_info em where is_deleted=0 and is_r
 ------------------To know total number of active index no
 
 
-select employee_name,dob,index_no,paycode_id,ins.institute_id,ins_name,desig_id from memis_live.mpo_employee_info join memis_live.MPO_INSTITUTE ins 
-on(mpo_employee_info.f_institute_id=ins.institute_id and mpo_employee_info.is_deleted=0) 
+select employee_name,dob,index_no,paycode_id,ins.institute_id,ins_name,inf.desig_id,inf.insert_time,desig_name from memis_live.mpo_employee_info inf,memis_live.MPO_INSTITUTE ins,
+memis_live.oa_designation od where inf.f_institute_id=ins.institute_id 
+and od.desig_id=inf.desig_id and paycode_id=8
+and inf.insert_time between '01-Oct-2019' and sysdate
  
 
 -----------------------Total no. of teachers in the mpo
